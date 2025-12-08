@@ -1,6 +1,6 @@
 const semesters = {
     1: [
-        { code: "MAT1001", name: "Álgebra y Geometría", prereq: [] },
+        { code: "MAT1001", name: "Fundamentos de Matematicas para Ingenieria", prereq: [] },
         { code: "QUI100", name: "Introducción a la Química", prereq: [] },
         { code: "EIQ101", name: "Introducción a la Ingeniería Química", prereq: [] }
     ],
