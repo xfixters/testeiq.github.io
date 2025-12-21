@@ -1,38 +1,62 @@
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("grid");
 
-    // cargar ramos aprobados desde el navegador
-    const approved = JSON.parse(localStorage.getItem("approvedCourses")) || [];
+    let approved = [];
+    try {
+        approved = JSON.parse(localStorage.getItem("approvedCourses")) || [];
+    } catch {
+        approved = [];
+    }
 
-    for (let sem = 1; sem <= 11; sem++) {
-        semesters[sem].forEach(course => {
-            const div = document.createElement("div");
-            div.className = "course";
-            div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
+    // función para verificar si un ramo está desbloqueado
+    function isUnlocked(course) {
+        return course.prereq.every(p => approved.includes(p));
+    }
 
-            // si ya estaba aprobado, marcarlo
-            if (approved.includes(course.code)) {
-                div.classList.add("approved");
-            }
+    function render() {
+        grid.innerHTML = "";
 
-            // click para marcar / desmarcar
-            div.addEventListener("click", () => {
-                div.classList.toggle("approved");
+        for (let sem = 1; sem <= 11; sem++) {
+            if (!semesters[sem]) continue;
 
-                const index = approved.indexOf(course.code);
-                if (index === -1) {
-                    approved.push(course.code);
+            semesters[sem].forEach(course => {
+                const div = document.createElement("div");
+                div.classList.add("course");
+                div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
+
+                const unlocked = isUnlocked(course);
+
+                if (approved.includes(course.code)) {
+                    div.classList.add("approved");
+                } else if (unlocked) {
+                    div.classList.add("available");
                 } else {
-                    approved.splice(index, 1);
+                    div.classList.add("locked");
                 }
 
-                localStorage.setItem(
-                    "approvedCourses",
-                    JSON.stringify(approved)
-                );
-            });
+                // solo permitir click si está disponible o aprobado
+                if (unlocked || approved.includes(course.code)) {
+                    div.addEventListener("click", () => {
+                        if (approved.includes(course.code)) {
+                            approved = approved.filter(c => c !== course.code);
+                        } else {
+                            approved.push(course.code);
+                        }
 
-            grid.appendChild(div);
-        });
+                        localStorage.setItem(
+                            "approvedCourses",
+                            JSON.stringify(approved)
+                        );
+
+                        render(); // volver a dibujar todo
+                    });
+                }
+
+                grid.appendChild(div);
+            });
+        }
     }
+
+    render();
 });
+
