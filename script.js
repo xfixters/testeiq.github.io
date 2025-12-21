@@ -28,7 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             semesters[sem].forEach(course => {
                 const div = document.createElement("div");
-                div.classList.add("course");
+               div.classList.add("course");
+
+// marcar ramos MAT
+if (course.code.startsWith("MAT")) {
+    div.classList.add("mat");
+}
+
                 div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
 
                 const unlocked = isUnlocked(course);
