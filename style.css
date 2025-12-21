@@ -208,17 +208,17 @@ h1 {
     background: linear-gradient(90deg, #2ecc71, #27ae60);
     transition: width 0.3s ease;
 }
-/* ICA - Naranjo */
+/* ===== ICA - NARANJO ===== */
 .course.ica {
-    background-color: #6b3e12 !important;
-    border-left: 6px solid #f39c12;
+    background-color: #6b3b12 !important;
+    border-left: 6px solid #ff9800;
     color: #ffffff !important;
 }
 
 /* ICA bloqueado */
 .course.ica.locked {
-    background-color: #2e1a08 !important;
-    border-left-color: #555 !important;
+    background-color: #111 !important;
+    border-left-color: #333 !important;
     color: #777 !important;
 }
 
