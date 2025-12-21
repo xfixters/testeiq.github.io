@@ -28,12 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             semesters[sem].forEach(course => {
                 const div = document.createElement("div");
-               div.classList.add("course");
+              div.classList.add("course");
 
-// marcar ramos MAT
-if (course.code.startsWith("MAT")) {
-    div.classList.add("mat");
-}
+// colores por sigla
+if (course.code.startsWith("MAT")) div.classList.add("mat");
+if (course.code.startsWith("EIQ")) div.classList.add("eiq");
+if (course.code.startsWith("ING")) div.classList.add("ing");
+if (course.code.startsWith("QUI")) div.classList.add("qui");
+if (course.code.startsWith("FIS")) div.classList.add("fis");
+
 
                 div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
 
