@@ -135,3 +135,20 @@ h1 {
 .course.fin.approved {
     border-left-color: #2ecc71 !important;
 }
+/* ===== RAMOS ROSADOS (ICR / IER / FOFU) ===== */
+
+.course.rosado {
+    background-color: #6b2b4a !important;
+    border-left: 6px solid #ff6fae;
+    color: #ffffff !important;
+}
+
+.course.rosado.locked {
+    background-color: #321421 !important;
+    border-left-color: #555 !important;
+    color: #777 !important;
+}
+
+.course.rosado.approved {
+    border-left-color: #2ecc71 !important;
+}
