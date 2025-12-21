@@ -117,3 +117,21 @@ h1 {
 .course.fis.approved {
     border-left-color: #2ecc71 !important;
 }
+/* FIN - Morado */
+.course.fin {
+    background-color: #4b256b !important;
+    border-left: 6px solid #9b59b6;
+    color: #ffffff !important;
+}
+
+/* FIN bloqueado */
+.course.fin.locked {
+    background-color: #2a1738 !important;
+    border-left-color: #555 !important;
+    color: #777 !important;
+}
+
+/* FIN aprobado */
+.course.fin.approved {
+    border-left-color: #2ecc71 !important;
+}
