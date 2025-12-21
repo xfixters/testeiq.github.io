@@ -152,3 +152,33 @@ h1 {
 .course.rosado.approved {
     border-left-color: #2ecc71 !important;
 }
+/* ===== BARRA DE PROGRESO ===== */
+
+#progress-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#progress-text {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    transition: width 0.3s ease;
+}
