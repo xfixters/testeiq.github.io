@@ -46,14 +46,16 @@ const semesters = {
         { code: "EIQ416", name: "Prevención de Riesgos Industriales", prereq: ["EIQ312"] },
         { code: "EIQ432", name: "Cálculo de Procesos Químicos", prereq: ["EIQ311"] },
         { code: "EIQ453", name: "Transferencia de Calor", prereq: ["EIQ356"] },
-        { code: "FOFU3", name: "Formacion Fundamental 3", prereq: [] }
+        { code: "FOFU3", name: "Formacion Fundamental 3", prereq: [] },
+        { code: "OPT1", name: "Optativo 1", prereq: [] }
     ],
     8: [
         { code: "EIQ451", name: "Transferencia de Masa", prereq: ["EIQ359"] },
         { code: "EIQ474", name: "Reactores Químicos 1", prereq: ["EIQ359"] },
         { code: "EIQ476", name: "Ingeniería Económica", prereq: ["EIQ312"] },
         { code: "EIQ492", name: "Electroquímica", prereq: ["EIQ359"] },
-        { code: "IER020", name: "Etica cristiana", prereq: [] }
+        { code: "IER020", name: "Etica cristiana", prereq: [] },
+        { code: "OPT2", name: "Optativo 2", prereq: [] }
     ],
     9: [
         { code: "EIQ500", name: "Simulación de Procesos", prereq: ["EIQ366"] },
@@ -66,7 +68,8 @@ const semesters = {
         { code: "EIQ553", name: "Control de Procesos Químicos", prereq: ["EIQ432"] },
         { code: "EIQ577", name: "Diseño de Plantas", prereq: ["EIQ476"] },
         { code: "EIQ582", name: "Proyecto de Título 1", prereq: [] },
-        { code: "EIQ597", name: "Lab. Operaciones Unitarias", prereq: ["EIQ451"] }
+        { code: "EIQ597", name: "Lab. Operaciones Unitarias", prereq: ["EIQ451"] },
+        { code: "OPT3", name: "Optativo 3", prereq: [] }
     ],
     11: [
         { code: "EIQ625", name: "Proyecto de Título 2", prereq: ["EIQ582"] }
