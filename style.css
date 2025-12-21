@@ -77,3 +77,52 @@ h1 {
     border-left: 6px solid #1eaa59 !important;
     color: white;
 }
+/* ===== COLORES POR SIGLA ===== */
+
+/* EIQ - Verde claro */
+.course.eiq {
+    background-color: #c8f3d4 !important;
+    border-left: 6px solid #4caf50;
+    color: #000;
+}
+
+.course.eiq.locked {
+    background-color: #e2f4e7 !important;
+    color: #777;
+}
+
+/* ING - Amarillo */
+.course.ing {
+    background-color: #fff3b0 !important;
+    border-left: 6px solid #f1c40f;
+    color: #000;
+}
+
+.course.ing.locked {
+    background-color: #f7f0c9 !important;
+    color: #777;
+}
+
+/* QUI - Rojo */
+.course.qui {
+    background-color: #f7c6c6 !important;
+    border-left: 6px solid #e74c3c;
+    color: #000;
+}
+
+.course.qui.locked {
+    background-color: #f3dddd !important;
+    color: #777;
+}
+
+/* FIS - Café */
+.course.fis {
+    background-color: #e6d3b1 !important;
+    border-left: 6px solid #8d6e63;
+    color: #000;
+}
+
+.course.fis.locked {
+    background-color: #efe4d3 !important;
+    color: #777;
+}
