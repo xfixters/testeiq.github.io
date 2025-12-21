@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         approved = [];
     }
 
-    // función para verificar si un ramo está desbloqueado
     function isUnlocked(course) {
         return course.prereq.every(p => approved.includes(p));
     }
@@ -18,6 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (let sem = 1; sem <= 11; sem++) {
             if (!semesters[sem]) continue;
+
+            // contenedor del semestre
+            const semDiv = document.createElement("div");
+            semDiv.className = "semester";
+
+            const title = document.createElement("h2");
+            title.textContent = `S${sem}`;
+            semDiv.appendChild(title);
 
             semesters[sem].forEach(course => {
                 const div = document.createElement("div");
@@ -34,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     div.classList.add("locked");
                 }
 
-                // solo permitir click si está disponible o aprobado
                 if (unlocked || approved.includes(course.code)) {
                     div.addEventListener("click", () => {
                         if (approved.includes(course.code)) {
@@ -48,15 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
                             JSON.stringify(approved)
                         );
 
-                        render(); // volver a dibujar todo
+                        render();
                     });
                 }
 
-                grid.appendChild(div);
+                semDiv.appendChild(div);
             });
+
+            grid.appendChild(semDiv);
         }
     }
 
     render();
 });
-
