@@ -36,6 +36,8 @@ if (course.code.startsWith("EIQ")) div.classList.add("eiq");
 if (course.code.startsWith("ING")) div.classList.add("ing");
 if (course.code.startsWith("QUI")) div.classList.add("qui");
 if (course.code.startsWith("FIS")) div.classList.add("fis");
+if (course.code.startsWith("FIN")) div.classList.add("fin");
+
 
 
                 div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
