@@ -3,12 +3,14 @@ const semesters = {
         { code: "EIQ110", name: "Fundamentos de Procesos Químicos", prereq: [] },
         { code: "FIN100", name: "Desarrollo Integral y Comunicación Para Ingeniería", prereq: [] },
         { code: "MAT1001", name: "Fundamentos de Matematicas para Ingenieria", prereq: [] },
-        { code: "QUI100", name: "Quimica para Ingenieria", prereq: [] }
+        { code: "QUI100", name: "Quimica para Ingenieria", prereq: [] },
+        { code: "IER010", name: "Antropologia Cristiana", prereq: [] }
     ],
     2: [
         { code: "EIQ120", name: "Fundamentos de Ingeniería", prereq: [] },
         { code: "MAT1002", name: "Cálculo Diferencial e Integral", prereq: ["MAT1001"] },
-        { code: "QUI161", name: "Química Inorgánica", prereq: ["QUI100"] }
+        { code: "QUI161", name: "Química Inorgánica", prereq: ["QUI100"] },
+        { code: "FOFU1", name: "Formacion Fundamental 1", prereq: [] }
     ],
     3: [
         { code: "EIQ220", name: "Balance de Materia", prereq: ["EIQ120"] },
@@ -29,7 +31,8 @@ const semesters = {
         { code: "EIQ311", name: "Termodinámica de Procesos", prereq: ["EIQ242"] },
         { code: "EIQ312", name: "Administración de la Producción", prereq: ["ICA213"] },
         { code: "EIQ314", name: "Interpretación de Planos", prereq: ["EIQ220"] },
-        { code: "ING9003", name: "Inglés 3", prereq: ["ING9002"] }
+        { code: "ING9003", name: "Inglés 3", prereq: ["ING9002"] },
+        { code: "FOFU2", name: "Formacion Fundamental 2", prereq: [] }
     ],
     6: [
         { code: "EIQ356", name: "Mecánica de Fluidos", prereq: ["FIS1002"] },
@@ -42,13 +45,15 @@ const semesters = {
         { code: "EIQ415", name: "Lab. Química Aplicada", prereq: ["EIQ263"] },
         { code: "EIQ416", name: "Prevención de Riesgos Industriales", prereq: ["EIQ312"] },
         { code: "EIQ432", name: "Cálculo de Procesos Químicos", prereq: ["EIQ311"] },
-        { code: "EIQ453", name: "Transferencia de Calor", prereq: ["EIQ356"] }
+        { code: "EIQ453", name: "Transferencia de Calor", prereq: ["EIQ356"] },
+        { code: "FOFU3", name: "Formacion Fundamental 3", prereq: [] }
     ],
     8: [
         { code: "EIQ451", name: "Transferencia de Masa", prereq: ["EIQ359"] },
         { code: "EIQ474", name: "Reactores Químicos 1", prereq: ["EIQ359"] },
         { code: "EIQ476", name: "Ingeniería Económica", prereq: ["EIQ312"] },
-        { code: "EIQ492", name: "Electroquímica", prereq: ["EIQ359"] }
+        { code: "EIQ492", name: "Electroquímica", prereq: ["EIQ359"] },
+        { code: "IER020", name: "Etica cristiana", prereq: [] }
     ],
     9: [
         { code: "EIQ500", name: "Simulación de Procesos", prereq: ["EIQ366"] },
