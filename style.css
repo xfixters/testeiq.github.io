@@ -34,11 +34,27 @@ h1 {
     transform: scale(1.02);
 }
 
-/* ===== APROBADOS ===== */
+/* ===== RAMOS APROBADOS - TACHADO DIAGONAL ===== */
+
 .course.approved {
-    text-decoration: line-through;
+    position: relative;
     opacity: 0.9;
 }
+
+/* línea roja diagonal */
+.course.approved::after {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: -10%;
+    width: 120%;
+    height: 4px;
+    background-color: #ff2b2b;
+    transform: rotate(-25deg);
+    pointer-events: none;
+    box-shadow: 0 0 6px #ff2b2b;
+}
+
 
 /* ===== BLOQUEADOS ===== */
 .course.locked {
