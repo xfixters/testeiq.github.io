@@ -60,3 +60,20 @@ h1 {
     text-align: center;
     margin-bottom: 5px;
 }
+/* Ramos MAT (Matemáticas) */
+.course.mat {
+    background-color: #1f6fe5 !important;
+    color: white;
+    border-left: 6px solid #0b4db3;
+}
+
+.course.mat.locked {
+    background-color: #7fa9e8 !important;
+    color: #eaeaea;
+}
+
+.course.mat.approved {
+    background-color: #1f6fe5 !important;
+    border-left: 6px solid #1eaa59 !important;
+    color: white;
+}
