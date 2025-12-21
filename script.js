@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("grid");
+    const progressText = document.getElementById("progress-text");
+    const progressFill = document.getElementById("progress-fill");
 
     let approved = [];
     try {
@@ -12,13 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
         return course.prereq.every(p => approved.includes(p));
     }
 
+    function updateProgress() {
+        const total = document.querySelectorAll(".course").length;
+        const done = approved.length;
+
+        const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+
+        progressFill.style.width = percent + "%";
+        progressText.textContent = `Progreso: ${percent}% (${done}/${total})`;
+    }
+
     function render() {
         grid.innerHTML = "";
 
         for (let sem = 1; sem <= 11; sem++) {
             if (!semesters[sem]) continue;
 
-            // contenedor del semestre
             const semDiv = document.createElement("div");
             semDiv.className = "semester";
 
@@ -28,21 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             semesters[sem].forEach(course => {
                 const div = document.createElement("div");
-              div.classList.add("course");
+                div.classList.add("course");
 
-// colores por sigla
-if (course.code.startsWith("MAT")) div.classList.add("mat");
-if (course.code.startsWith("EIQ")) div.classList.add("eiq");
-if (course.code.startsWith("ING")) div.classList.add("ing");
-if (course.code.startsWith("QUI")) div.classList.add("qui");
-if (course.code.startsWith("FIS")) div.classList.add("fis");
-if (course.code.startsWith("FIN")) div.classList.add("fin");
-if (course.code.startsWith("ICR")) div.classList.add("rosado");
-if (course.code.startsWith("IER")) div.classList.add("rosado");
-if (course.code.startsWith("FOFU")) div.classList.add("rosado");
-
-
-
+                // colores por sigla
+                if (course.code.startsWith("MAT")) div.classList.add("mat");
+                if (course.code.startsWith("EIQ")) div.classList.add("eiq");
+                if (course.code.startsWith("ING")) div.classList.add("ing");
+                if (course.code.startsWith("QUI")) div.classList.add("qui");
+                if (course.code.startsWith("FIS")) div.classList.add("fis");
+                if (course.code.startsWith("FIN")) div.classList.add("fin");
+                if (course.code.startsWith("ICR")) div.classList.add("rosado");
+                if (course.code.startsWith("IER")) div.classList.add("rosado");
+                if (course.code.startsWith("FOFU")) div.classList.add("rosado");
 
                 div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
 
@@ -78,6 +86,8 @@ if (course.code.startsWith("FOFU")) div.classList.add("rosado");
 
             grid.appendChild(semDiv);
         }
+
+        updateProgress();
     }
 
     render();
