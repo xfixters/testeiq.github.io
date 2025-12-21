@@ -51,6 +51,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (course.code.startsWith("ICR")) div.classList.add("rosado");
                 if (course.code.startsWith("IER")) div.classList.add("rosado");
                 if (course.code.startsWith("FOFU")) div.classList.add("rosado");
+                if (course.code.startsWith("ICA")) div.classList.add("ica");
+
+                if (
+                    course.code.startsWith("OPT1") ||
+                    course.code.startsWith("OPT2") ||
+                    course.code.startsWith("OPT3")
+                    ) {
+                    div.classList.add("opt");
+}
+
 
                 div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
 
