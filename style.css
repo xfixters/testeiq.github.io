@@ -26,7 +26,7 @@ h1 {
     cursor: pointer;
     border-left: 5px solid #444;
     color: #ffffff !important;
-    transition: transform 0.1s ease, filter 0.1s ease;
+    transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 .course:hover {
@@ -34,14 +34,27 @@ h1 {
     transform: scale(1.02);
 }
 
-/* ===== RAMOS APROBADOS - TACHADO ROJO CENTRADO ===== */
-
+/* ===== RAMOS APROBADOS: CHECK + LINEA ROJA + ANIMACION ===== */
 .course.approved {
     position: relative;
-    opacity: 0.9;
+    opacity: 0.95;
+    animation: approvedPop 0.25s ease-out;
 }
 
-/* línea roja recta */
+/* ✔ Check verde */
+.course.approved::before {
+    content: "✔";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2ecc71;
+    text-shadow: 0 0 6px #2ecc71;
+    pointer-events: none;
+}
+
+/* Línea roja horizontal */
 .course.approved::after {
     content: "";
     position: absolute;
@@ -56,7 +69,21 @@ h1 {
     box-shadow: 0 0 6px #ff2b2b;
 }
 
-
+/* Animación */
+@keyframes approvedPop {
+    0% {
+        transform: scale(0.95);
+        filter: brightness(0.8);
+    }
+    60% {
+        transform: scale(1.04);
+        filter: brightness(1.2);
+    }
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
 
 /* ===== BLOQUEADOS ===== */
 .course.locked {
@@ -121,7 +148,9 @@ h1 {
 .course.eiq.locked,
 .course.ing.locked,
 .course.qui.locked,
-.course.fis.locked {
+.course.fis.locked,
+.course.fin.locked,
+.course.rosado.locked {
     background-color: #111 !important;
     border-left-color: #333 !important;
     color: #777 !important;
@@ -132,46 +161,25 @@ h1 {
 .course.eiq.approved,
 .course.ing.approved,
 .course.qui.approved,
-.course.fis.approved {
+.course.fis.approved,
+.course.fin.approved,
+.course.rosado.approved {
     border-left-color: #2ecc71 !important;
 }
+
 /* FIN - Morado */
 .course.fin {
     background-color: #4b256b !important;
     border-left: 6px solid #9b59b6;
-    color: #ffffff !important;
 }
 
-/* FIN bloqueado */
-.course.fin.locked {
-    background-color: #2a1738 !important;
-    border-left-color: #555 !important;
-    color: #777 !important;
-}
-
-/* FIN aprobado */
-.course.fin.approved {
-    border-left-color: #2ecc71 !important;
-}
 /* ===== RAMOS ROSADOS (ICR / IER / FOFU) ===== */
-
 .course.rosado {
     background-color: #6b2b4a !important;
     border-left: 6px solid #ff6fae;
-    color: #ffffff !important;
 }
 
-.course.rosado.locked {
-    background-color: #321421 !important;
-    border-left-color: #555 !important;
-    color: #777 !important;
-}
-
-.course.rosado.approved {
-    border-left-color: #2ecc71 !important;
-}
 /* ===== BARRA DE PROGRESO ===== */
-
 #progress-container {
     width: 100%;
     max-width: 600px;
