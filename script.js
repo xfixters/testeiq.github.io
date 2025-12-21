@@ -37,6 +37,10 @@ if (course.code.startsWith("ING")) div.classList.add("ing");
 if (course.code.startsWith("QUI")) div.classList.add("qui");
 if (course.code.startsWith("FIS")) div.classList.add("fis");
 if (course.code.startsWith("FIN")) div.classList.add("fin");
+if (course.code.startsWith("ICR")) div.classList.add("rosado");
+if (course.code.startsWith("IER")) div.classList.add("rosado");
+if (course.code.startsWith("FOFU")) div.classList.add("rosado");
+
 
 
 
