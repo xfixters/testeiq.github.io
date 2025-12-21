@@ -1,8 +1,9 @@
 const semesters = {
     1: [
+        { code: "EIQ110", name: "Fundamentos de Procesos Químicos", prereq: [] },
+        { code: "FIN100", name: "Desarrollo Integral y Comunicación Para Ingeniería", prereq: [] },
         { code: "MAT1001", name: "Fundamentos de Matematicas para Ingenieria", prereq: [] },
-        { code: "QUI100", name: "Introducción a la Química", prereq: [] },
-        { code: "EIQ101", name: "Introducción a la Ingeniería Química", prereq: [] }
+        { code: "QUI100", name: "Introducción a la Química", prereq: [] }
     ],
     2: [
         { code: "EIQ120", name: "Fundamentos de Ingeniería", prereq: [] },
