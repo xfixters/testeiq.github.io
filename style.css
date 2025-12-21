@@ -26,3 +26,8 @@ h1 {
 .course:hover {
     background: #e7f0ff;
 }
+.course.approved {
+    background: #d4f8d4;
+    border-left: 5px solid #2ecc71;
+    text-decoration: line-through;
+}
