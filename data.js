@@ -47,7 +47,7 @@ const semesters = {
         { code: "EIQ432", name: "Cálculo de Procesos Químicos", prereq: ["EIQ311"], credits: 4 },
         { code: "EIQ453", name: "Transferencia de Calor", prereq: ["EIQ356"], credits: 4 },
         { code: "FOFU3", name: "Formacion Fundamental 3", prereq: [], credits: 2 },
-        { code: "OPT1", name: "Optativo 1", prereq: [], credits: 4 }
+        { code: "OPT1", name: "Optativo 1", prereq: [], credits: 2 }
     ],
     8: [
         { code: "EIQ451", name: "Transferencia de Masa", prereq: ["EIQ359"], credits: 4 },
@@ -55,7 +55,7 @@ const semesters = {
         { code: "EIQ476", name: "Ingeniería Económica", prereq: ["EIQ312"], credits: 3 },
         { code: "EIQ492", name: "Electroquímica", prereq: ["EIQ359"], credits: 4 },
         { code: "IER020", name: "Etica cristiana", prereq: [], credits: 2 },
-        { code: "OPT2", name: "Optativo 2", prereq: [], credits: 4 }
+        { code: "OPT2", name: "Optativo 2", prereq: [], credits: 2 }
     ],
     9: [
         { code: "EIQ500", name: "Simulación de Procesos", prereq: ["EIQ366"], credits: 4 },
@@ -69,7 +69,7 @@ const semesters = {
         { code: "EIQ577", name: "Diseño de Plantas", prereq: ["EIQ476"], credits: 3 },
         { code: "EIQ582", name: "Proyecto de Título 1", prereq: [], credits: 6 },
         { code: "EIQ597", name: "Lab. Operaciones Unitarias", prereq: ["EIQ451"], credits: 4 },
-        { code: "OPT3", name: "Optativo 3", prereq: [], credits: 4 }
+        { code: "OPT3", name: "Optativo 3", prereq: [], credits: 2 }
     ],
     11: [
         { code: "EIQ625", name: "Proyecto de Título 2", prereq: ["EIQ582"], credits: 16 }
