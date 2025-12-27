@@ -1,10 +1,10 @@
 const semesters = {
     1: [
-        { code: "EIQ110", name: "Fundamentos de Procesos Químicos", prereq: [], credits: 2},
-        { code: "FIN100", name: "Desarrollo Integral y Comunicación Para Ingeniería", prereq: [], credits: 3},
-        { code: "MAT1001", name: "Fundamentos de Matematicas para Ingenieria", prereq: [], credits: 6},
-        { code: "QUI100", name: "Quimica para Ingenieria", prereq: [], credits: 5},
-        { code: "IER010", name: "Antropologia Cristiana", prereq: [], credits: 2}
+        { code: "EIQ110", name: "Fundamentos de Procesos Químicos", prereq: [], credits: 2 },
+        { code: "FIN100", name: "Desarrollo Integral y Comunicación Para Ingeniería", prereq: [], credits: 3 },
+        { code: "MAT1001", name: "Fundamentos de Matematicas para Ingenieria", prereq: [], credits: 6 },
+        { code: "QUI100", name: "Quimica para Ingenieria", prereq: [], credits: 5 },
+        { code: "IER010", name: "Antropologia Cristiana", prereq: [], credits: 2 }
     ],
     2: [
         { code: "EIQ120", name: "Fundamentos de Ingeniería", prereq: [], credits: 4 },
