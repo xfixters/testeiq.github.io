@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         semesters[sem].forEach(c => allCourses.push(c.code));
     }
 
-    // 🔥 LIMPIEZA AUTOMÁTICA
+    // ===== LIMPIEZA AUTOMÁTICA =====
     approved = approved.filter(code => allCourses.includes(code));
     localStorage.setItem("approvedCourses", JSON.stringify(approved));
 
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===== CRÉDITOS =====
     function calculateApprovedCredits() {
         let total = 0;
-
         for (let sem in semesters) {
             semesters[sem].forEach(course => {
                 if (approved.includes(course.code)) {
@@ -38,19 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
-
         return total;
     }
 
     function calculateTotalCredits() {
         let total = 0;
-
         for (let sem in semesters) {
             semesters[sem].forEach(course => {
                 total += Number(course.credits) || 0;
             });
         }
-
         return total;
     }
 
@@ -59,13 +55,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const approvedCredits = calculateApprovedCredits();
         const totalCredits = calculateTotalCredits();
 
+        const approvedCourses = approved.length;
+        const totalCourses = allCourses.length;
+
         const percent = totalCredits === 0
             ? 0
             : Math.round((approvedCredits / totalCredits) * 100);
 
         progressFill.style.width = percent + "%";
         progressText.textContent = `Progreso: ${percent}%`;
-        creditsText.textContent = `Créditos aprobados: ${approvedCredits} / ${totalCredits}`;
+
+        creditsText.innerHTML = `
+            Créditos aprobados: ${approvedCredits} / ${totalCredits}<br>
+            Ramos aprobados: ${approvedCourses} / ${totalCourses}
+        `;
     }
 
     // ===== RENDER =====
