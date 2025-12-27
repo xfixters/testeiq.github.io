@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("grid");
     const progressText = document.getElementById("progress-text");
     const progressFill = document.getElementById("progress-fill");
+    const creditsText = document.getElementById("credits-text");
 
     let approved = [];
     try {
@@ -14,14 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
         return course.prereq.every(p => approved.includes(p));
     }
 
-    function updateProgress() {
-        const total = document.querySelectorAll(".course").length;
-        const done = approved.length;
+    function calculateCredits() {
+        let totalCredits = 0;
 
-        const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+        for (let sem in semesters) {
+            semesters[sem].forEach(course => {
+                if (approved.includes(course.code)) {
+                    totalCredits += course.credits || 0;
+                }
+            });
+        }
+
+        return totalCredits;
+    }
+
+    function updateProgress() {
+        let totalCourses = 0;
+        for (let sem in semesters) {
+            totalCourses += semesters[sem].length;
+        }
+
+        const done = approved.length;
+        const percent = totalCourses === 0 ? 0 : Math.round((done / totalCourses) * 100);
 
         progressFill.style.width = percent + "%";
-        progressText.textContent = `Progreso: ${percent}% (${done}/${total})`;
+        progressText.textContent = `Progreso: ${percent}% (${done}/${totalCourses})`;
+        creditsText.textContent = `Créditos aprobados: ${calculateCredits()}`;
     }
 
     function render() {
@@ -48,21 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (course.code.startsWith("QUI")) div.classList.add("qui");
                 if (course.code.startsWith("FIS")) div.classList.add("fis");
                 if (course.code.startsWith("FIN")) div.classList.add("fin");
-                if (course.code.startsWith("ICR")) div.classList.add("rosado");
-                if (course.code.startsWith("IER")) div.classList.add("rosado");
-                if (course.code.startsWith("FOFU")) div.classList.add("rosado");
                 if (course.code.startsWith("ICA")) div.classList.add("ica");
+                if (
+                    course.code.startsWith("ICR") ||
+                    course.code.startsWith("IER") ||
+                    course.code.startsWith("FOFU")
+                ) div.classList.add("rosado");
 
                 if (
                     course.code.startsWith("OPT1") ||
                     course.code.startsWith("OPT2") ||
                     course.code.startsWith("OPT3")
-                    ) {
-                    div.classList.add("opt");
-}
+                ) div.classList.add("opt");
 
-
-                div.innerHTML = `<strong>${course.code}</strong><br>${course.name}`;
+                div.innerHTML = `
+                    <strong>${course.code}</strong><br>
+                    ${course.name}<br>
+                    <small>${course.credits ?? 0} créditos</small>
+                `;
 
                 const unlocked = isUnlocked(course);
 
