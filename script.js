@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         while (changed) {
             changed = false;
-
             approved.forEach(c => {
                 const prereq = courseMap[c]?.prereq || [];
                 if (prereq.some(p => toRemove.has(p)) && !toRemove.has(c)) {
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return total;
     }
 
-    // ===== PROGRESO (CRÉDITOS) =====
+    // ===== PROGRESO (CRÉDITOS CON 1 DECIMAL) =====
     function updateProgress() {
         const approvedCredits = calculateApprovedCredits();
         const totalCredits = calculateTotalCredits();
@@ -85,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const percent = totalCredits === 0
             ? 0
-            : Math.round((approvedCredits / totalCredits) * 100);
+            : ((approvedCredits / totalCredits) * 100).toFixed(1); // 👈 1 decimal
 
         progressFill.style.width = percent + "%";
         progressText.textContent = `Progreso: ${percent}%`;
