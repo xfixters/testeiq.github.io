@@ -44,7 +44,7 @@ const semesters = {
     7: [
         { code: "EIQ415", name: "Lab. Química Aplicada", prereq: ["EIQ263"], credits: 4 },
         { code: "EIQ416", name: "Prevención de Riesgos Industriales", prereq: ["EIQ312"], credits: 3 },
-        { code: "EIQ432", name: "Cálculo de Procesos Químicos", prereq: ["EIQ311"], credits: 4 },
+        { code: "EIQ432", name: "Cálculo de Procesos Químicos", prereq: ["EIQ311"], credits: 5 },
         { code: "EIQ453", name: "Transferencia de Calor", prereq: ["EIQ356"], credits: 4 },
         { code: "FOFU3", name: "Formacion Fundamental 3", prereq: [], credits: 2 },
         { code: "OPT1", name: "Optativo 1", prereq: [], credits: 2 }
