@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressFill = document.getElementById("progress-fill");
     const creditsText = document.getElementById("credits-text");
 
+    // ===== CARGAR APROBADOS =====
     let approved = [];
     try {
         approved = JSON.parse(localStorage.getItem("approvedCourses")) || [];
@@ -11,38 +12,51 @@ document.addEventListener("DOMContentLoaded", () => {
         approved = [];
     }
 
+    // ===== LISTA REAL DE RAMOS =====
+    const allCourses = [];
+    for (let sem in semesters) {
+        semesters[sem].forEach(c => allCourses.push(c.code));
+    }
+
+    // 🔥 LIMPIEZA AUTOMÁTICA (CLAVE)
+    approved = approved.filter(code => allCourses.includes(code));
+    localStorage.setItem("approvedCourses", JSON.stringify(approved));
+
+    // ===== PRERREQUISITOS =====
     function isUnlocked(course) {
         return course.prereq.every(p => approved.includes(p));
     }
 
+    // ===== CRÉDITOS =====
     function calculateCredits() {
-        let totalCredits = 0;
+        let total = 0;
 
         for (let sem in semesters) {
             semesters[sem].forEach(course => {
                 if (approved.includes(course.code)) {
-                    totalCredits += course.credits || 0;
+                    total += Number(course.credits) || 0;
                 }
             });
         }
 
-        return totalCredits;
+        return total;
     }
 
+    // ===== PROGRESO =====
     function updateProgress() {
-        let totalCourses = 0;
-        for (let sem in semesters) {
-            totalCourses += semesters[sem].length;
-        }
+        let totalCourses = allCourses.length;
+        let done = approved.length;
 
-        const done = approved.length;
-        const percent = totalCourses === 0 ? 0 : Math.round((done / totalCourses) * 100);
+        const percent = totalCourses === 0
+            ? 0
+            : Math.round((done / totalCourses) * 100);
 
         progressFill.style.width = percent + "%";
         progressText.textContent = `Progreso: ${percent}% (${done}/${totalCourses})`;
         creditsText.textContent = `Créditos aprobados: ${calculateCredits()}`;
     }
 
+    // ===== RENDER =====
     function render() {
         grid.innerHTML = "";
 
@@ -60,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const div = document.createElement("div");
                 div.classList.add("course");
 
-                // colores por sigla
+                // ===== COLORES =====
                 if (course.code.startsWith("MAT")) div.classList.add("mat");
                 if (course.code.startsWith("EIQ")) div.classList.add("eiq");
                 if (course.code.startsWith("ING")) div.classList.add("ing");
@@ -68,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (course.code.startsWith("FIS")) div.classList.add("fis");
                 if (course.code.startsWith("FIN")) div.classList.add("fin");
                 if (course.code.startsWith("ICA")) div.classList.add("ica");
+
                 if (
                     course.code.startsWith("ICR") ||
                     course.code.startsWith("IER") ||
@@ -83,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.innerHTML = `
                     <strong>${course.code}</strong><br>
                     ${course.name}<br>
-                    <small>${course.credits ?? 0} créditos</small>
+                    <small>${course.credits} créditos</small>
                 `;
 
                 const unlocked = isUnlocked(course);
