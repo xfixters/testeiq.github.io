@@ -14,8 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== LISTA REAL DE RAMOS =====
     const allCourses = [];
+    const courseMap = {};
+
     for (let sem in semesters) {
-        semesters[sem].forEach(c => allCourses.push(c.code));
+        semesters[sem].forEach(c => {
+            allCourses.push(c.code);
+            courseMap[c.code] = c;
+        });
     }
 
     // ===== LIMPIEZA AUTOMÁTICA =====
@@ -25,6 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===== PRERREQUISITOS =====
     function isUnlocked(course) {
         return course.prereq.every(p => approved.includes(p));
+    }
+
+    // ===== DESAPROBACIÓN EN CASCADA =====
+    function removeWithDependents(code) {
+        const toRemove = new Set([code]);
+        let changed = true;
+
+        while (changed) {
+            changed = false;
+
+            approved.forEach(c => {
+                const prereq = courseMap[c]?.prereq || [];
+                if (prereq.some(p => toRemove.has(p)) && !toRemove.has(c)) {
+                    toRemove.add(c);
+                    changed = true;
+                }
+            });
+        }
+
+        approved = approved.filter(c => !toRemove.has(c));
     }
 
     // ===== CRÉDITOS =====
@@ -50,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return total;
     }
 
-    // ===== PROGRESO (POR CRÉDITOS) =====
+    // ===== PROGRESO (CRÉDITOS) =====
     function updateProgress() {
         const approvedCredits = calculateApprovedCredits();
         const totalCredits = calculateTotalCredits();
@@ -64,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         progressFill.style.width = percent + "%";
         progressText.textContent = `Progreso: ${percent}%`;
-
         creditsText.innerHTML = `
             Créditos aprobados: ${approvedCredits} / ${totalCredits}<br>
             Ramos aprobados: ${approvedCourses} / ${totalCourses}
@@ -129,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (unlocked || approved.includes(course.code)) {
                     div.addEventListener("click", () => {
                         if (approved.includes(course.code)) {
-                            approved = approved.filter(c => c !== course.code);
+                            removeWithDependents(course.code);
                         } else {
                             approved.push(course.code);
                         }
