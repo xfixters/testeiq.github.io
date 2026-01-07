@@ -29,8 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== PRERREQUISITOS =====
     function isUnlocked(course) {
-        return course.prereq.every(p => approved.includes(p));
-    }
+    // Prerrequisitos por ramos
+    const prereqOk = course.prereq.every(p => approved.includes(p));
+
+    // Prerrequisito por créditos (si existe)
+    const creditsOk = course.minCredits
+        ? calculateApprovedCredits() >= course.minCredits
+        : true;
+
+    return prereqOk && creditsOk;
+}
+
 
     // ===== DESAPROBACIÓN EN CASCADA =====
     function removeWithDependents(code) {
