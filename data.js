@@ -67,7 +67,7 @@ const semesters = {
     10: [
         { code: "EIQ553", name: "Control de Procesos Químicos", prereq: ["EIQ432"], credits: 5 },
         { code: "EIQ577", name: "Diseño de Plantas", prereq: ["EIQ476"], credits: 3 },
-        { code: "EIQ582", name: "Proyecto de Título 1", prereq: [], credits: 6 },
+        { code: "EIQ582", name: "Proyecto de Título 1", prereq: [], minCredits: 155, credits: 6 },
         { code: "EIQ597", name: "Lab. Operaciones Unitarias", prereq: ["EIQ451"], credits: 4 },
         { code: "OPT3", name: "Optativo 3", prereq: [], credits: 2 }
     ],
