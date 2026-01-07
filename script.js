@@ -4,10 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressFill = document.getElementById("progress-fill");
     const creditsText = document.getElementById("credits-text");
 
+    // ===== CLAVE LOCALSTORAGE ICQ =====
+    const STORAGE_KEY = "approvedCourses_ICQ";
+
     // ===== CARGAR APROBADOS =====
     let approved = [];
     try {
-        approved = JSON.parse(localStorage.getItem("approvedCourses")) || [];
+        approved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     } catch {
         approved = [];
     }
@@ -25,21 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== LIMPIEZA AUTOMÁTICA =====
     approved = approved.filter(code => allCourses.includes(code));
-    localStorage.setItem("approvedCourses", JSON.stringify(approved));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(approved));
 
     // ===== PRERREQUISITOS =====
     function isUnlocked(course) {
-    // Prerrequisitos por ramos
-    const prereqOk = course.prereq.every(p => approved.includes(p));
-
-    // Prerrequisito por créditos (si existe)
-    const creditsOk = course.minCredits
-        ? calculateApprovedCredits() >= course.minCredits
-        : true;
-
-    return prereqOk && creditsOk;
-}
-
+        const prereqOk = course.prereq.every(p => approved.includes(p));
+        const creditsOk = course.minCredits
+            ? calculateApprovedCredits() >= course.minCredits
+            : true;
+        return prereqOk && creditsOk;
+    }
 
     // ===== DESAPROBACIÓN EN CASCADA =====
     function removeWithDependents(code) {
@@ -83,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return total;
     }
 
-    // ===== PROGRESO (CRÉDITOS CON 1 DECIMAL) =====
+    // ===== PROGRESO =====
     function updateProgress() {
         const approvedCredits = calculateApprovedCredits();
         const totalCredits = calculateTotalCredits();
@@ -93,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const percent = totalCredits === 0
             ? 0
-            : ((approvedCredits / totalCredits) * 100).toFixed(1); // 👈 1 decimal
+            : ((approvedCredits / totalCredits) * 100).toFixed(1);
 
         progressFill.style.width = percent + "%";
         progressText.textContent = `Progreso: ${percent}%`;
@@ -121,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const div = document.createElement("div");
                 div.classList.add("course");
 
-                // ===== COLORES =====
                 if (course.code.startsWith("MAT")) div.classList.add("mat");
                 if (course.code.startsWith("EIQ")) div.classList.add("eiq");
                 if (course.code.startsWith("ING")) div.classList.add("ing");
@@ -167,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         localStorage.setItem(
-                            "approvedCourses",
+                            STORAGE_KEY,
                             JSON.stringify(approved)
                         );
 
